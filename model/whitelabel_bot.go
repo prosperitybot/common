@@ -27,7 +27,7 @@ type WhitelabelBot struct {
 	PublicKey *string `db:"publicKey"`
 	// Actions
 	Action     *string `db:"action"`
-	LastAction string  `db:"lastAction"`
+	LastAction string  `db:"last_action"`
 	// Bot Info
 	Name          *string `db:"botName"`
 	Discriminator *string `db:"botDiscrim"`
@@ -38,6 +38,8 @@ type WhitelabelBot struct {
 	// Bot Settings
 	CreatedAt time.Time `db:"createdAt"`
 	UpdatedAt time.Time `db:"updatedAt"`
+	// Future settings (not currently used)
+	BotIndex *int `db:"botIndex"`
 }
 
 func (b *WhitelabelBot) FillInfoByToken() error {

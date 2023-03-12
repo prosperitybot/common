@@ -18,8 +18,8 @@ func GetMainBotId() string {
 
 func CreateCommands(commands []discordgo.ApplicationCommand, botId string, botToken string, devGuildId string) {
 	endpoint := discordgo.EndpointApplicationGlobalCommands(os.Getenv("DISCORD_APPLICATION_ID"))
-	if os.Getenv("DEVGUILD_ID") != "" {
-		endpoint = discordgo.EndpointApplicationGuildCommands(os.Getenv("DISCORD_APPLICATION_ID"), os.Getenv("DEVGUILD_ID"))
+	if devGuildId != "" && os.Getenv("ENV") == "dev" {
+		endpoint = discordgo.EndpointApplicationGuildCommands(os.Getenv("DISCORD_APPLICATION_ID"), devGuildId)
 	}
 
 	body, err := json.Marshal(commands)

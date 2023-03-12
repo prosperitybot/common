@@ -11,6 +11,7 @@ type Guild struct {
 	XpRate              float64   `db:"xpRate"`
 	RoleAssignType      string    `db:"roleAssignType"`
 	Locale              string    `db:"locale"`
+	ServerLocaleOnly    bool      `db:"serverLocaleOnly"`
 	Active              bool      `db:"active"`
 	CreatedAt           time.Time `db:"createdAt"`
 	UpdatedAt           time.Time `db:"updatedAt"`
