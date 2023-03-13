@@ -8,6 +8,7 @@ import (
 	"github.com/prosperitybot/common/utils"
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+	"gopkg.in/DataDog/dd-trace-go.v1/ddtrace/tracer"
 )
 
 var log *zap.Logger
@@ -68,6 +69,11 @@ func Default() *zap.Logger {
 }
 
 func addContextInfo(ctx context.Context, fields []zapcore.Field) []zapcore.Field {
+
+	if span, ok := tracer.SpanFromContext(ctx); ok {
+		fields = append(fields, zap.Uint64("dd.trace_id", span.Context().TraceID()), zap.Uint64("dd.span_id", span.Context().SpanID()))
+	}
+
 	if ctx.Value(utils.GuildIdContextKey) != nil {
 		fields = append(fields, zap.String("guild_id", ctx.Value(utils.GuildIdContextKey).(string)))
 	}
