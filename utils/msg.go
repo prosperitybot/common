@@ -30,7 +30,7 @@ func CreateEmbed(opts *discordgo.MessageEmbed, hasError bool) *discordgo.Message
 
 	if opts.Footer == nil {
 		opts.Footer = &discordgo.MessageEmbedFooter{
-			Text: "Made with ❤️ by Ben#2028",
+			Text: "Made with ❤️ by benhdev",
 		}
 	}
 
